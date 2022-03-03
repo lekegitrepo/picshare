@@ -1,5 +1,9 @@
 <div id="<%= dom_id post %>">
   <p>
+    <h3><strong>Post image:</strong></h3>
+    <%= link_to image_tag(post.image.url), post %>
+  </p>
+  <p>
     <strong>Caption:</strong>
     <%= post.caption %>
   </p>

@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     user = User.find_by_username(params[:username])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to :users, notice: 'Logged In, successfully!'
+      redirect_to :posts, notice: 'Logged In, successfully!'
     else
       flash[:notice] = 'Unable to login, can not verify the user!'
       render 'new'
