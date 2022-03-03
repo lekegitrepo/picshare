@@ -4,10 +4,16 @@
     <%= user.username %>
   </p>
 
-  <p>
-    <% user.posts.each do |post| %>
-      <%= link_to post.caption, post_path(post) %>
-    <% end %>
-  </p>
+  <% if request.path.include?("#{user.id}") %>
+    <p>
+      <% user.posts.each do |post| %>
+        <p>
+          <h3><strong>Post image:</strong></h3>
+          <%= link_to image_tag(post.image.url :preview), post %>
+          <%= link_to post.caption, post_path(post) %>
+        </p>
+      <% end %>
+    </p>
+  <% end %>
 
 </div>

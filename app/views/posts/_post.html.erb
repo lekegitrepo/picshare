@@ -1,7 +1,7 @@
 <div id="<%= dom_id post %>">
   <p>
     <h3><strong>Post image:</strong></h3>
-    <%= link_to image_tag(post.image.url), post %>
+    <%= link_to image_tag(post.image.url :preview), post %>
   </p>
   <p>
     <strong>Caption:</strong>
