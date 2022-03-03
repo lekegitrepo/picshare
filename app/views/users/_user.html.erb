@@ -4,4 +4,10 @@
     <%= user.username %>
   </p>
 
+  <p>
+    <% user.posts.each do |post| %>
+      <%= link_to post.caption, post_path(post) %>
+    <% end %>
+  </p>
+
 </div>

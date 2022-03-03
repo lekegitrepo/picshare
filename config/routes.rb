@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
+  root "posts#index"
+
   get 'login', to: 'sessions#new'
   get 'logout', to: 'sessions#destroy'
 
@@ -12,5 +14,4 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
 end
