@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
 
+  before_action :confirm_authorization, only: [:edit, :update, :destroy]
+
   # GET /users or /users.json
   def index
     @users = User.all
@@ -66,5 +68,11 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:username, :password, :password_confirmation)
+    end
+
+    def confirm_authorization
+      unless current_user == @user
+        redirect_to root_path, alert: 'You do not have permission to perform this operation!'
+      end
     end
 end

@@ -1,5 +1,10 @@
 class PostsController < ApplicationController
+  include AuthorizationHelper
   before_action :set_post, only: %i[ show edit update destroy ]
+
+  before_action :confirm_owner, only: [:edit, :update, :destroy]
+
+  before_action :confirm_login, only: :new
 
   # GET /posts or /posts.json
   def index
@@ -66,5 +71,11 @@ class PostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def post_params
       params.require(:post).permit(:caption, :image)
+    end
+
+    def confirm_owner
+      unless @post.user == current_user
+        redirect_to root_path, alert: 'You do not have permission to perform this operation!'
+      end
     end
 end
